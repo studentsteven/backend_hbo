@@ -1,6 +1,17 @@
+# Van de package 'node', pak versie 20
 FROM node:20
-WORKDIR /usr/src/app
-COPY package*.json app.js ./
+
+# De workdirectory instellen
+WORKDIR /app
+
+# Kopieer de bestanden naar de workdirectory
+COPY package*.json .
+
+# Installeer alle bestanden van de node_modules in de workdirectory
 RUN npm install
-EXPOSE 3000
-CMD ["node", "app.js"]
+
+# Kopieër de rest van de bestanden naar de workdirectory
+COPY . .
+
+# Laat de app runnen
+CMD ["node","app.js"]
